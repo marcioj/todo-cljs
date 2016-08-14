@@ -1,0 +1,24 @@
+/* some style */
+body {
+  margin: 10px;
+}
+
+a {
+  margin: 0 5px;
+}
+
+input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+}
+
+ul {
+  list-style: none;
+  margin-bottom: 10px;
+  margin-left: -20px;
+}
+
+li > span {
+  min-width: 300px;
+  display: inline-block;
+
+}
