@@ -12,10 +12,10 @@
   (.getNextUniqueId id-gen))
 
 (defonce app-state (atom
-  {:todos
-    [{:text "Comprar x calota" :id (next-id) :completed true}
-     {:text "Comprar pasta de dente" :id (next-id)}]
-   :filter-fn identity}))
+                    {:todos
+                      [{:text "Comprar x calota" :id (next-id) :completed true}
+                       {:text "Comprar pasta de dente" :id (next-id)}]
+                     :filter-fn identity}))
 
 (defn remove-todo [todo]
   (defn not-same [item]
@@ -48,7 +48,7 @@
         (dom/a #js {:href "#" :onClick #(remove-todo todo)} "X")))))
 
 (def todo-item (om/factory TodoItem
-  {:keyfn :id}))
+                {:keyfn :id}))
 
 (defn render-todos [todos]
   (map #(todo-item {:todo % :id (:id %) }) todos))
@@ -98,8 +98,8 @@
           (dom/span nil (str "Items left:" (items-left)))
           (dom/a #js {:href "#active" :onClick items-active} "Active")
           (dom/a #js {:href "#completed" :onClick items-completed} "Completed")
-          (dom/a #js {:href "#all" :onClick all-items} "All")
-          )))))
+          (dom/a #js {:href "#all" :onClick all-items} "All"))))))
+
 
 
 (def reconciler
@@ -108,11 +108,10 @@
 (om/add-root! reconciler
   App (gdom/getElement "app"))
 
-(defn on-js-reload []
+(defn on-js-reload [])
   ; (let [elem (gdom/getElement "input")]
   ;   (when elem (.focus elem)))
 
   ;; optionally touch your app-state to force rerendering depending on
   ;; your application
   ;; (swap! app-state update-in [:__figwheel_counter] inc)
-)
