@@ -16,6 +16,7 @@
     (->> (.stringify js/JSON (clj->js (:todos new_state)))
          (.setItem js/localStorage "todo-cljs.todos"))))
 
+
 (defn- next-id
   "Gets the next id based on the last id"
   []
