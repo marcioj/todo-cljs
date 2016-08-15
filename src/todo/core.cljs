@@ -50,7 +50,11 @@
     (let [todos (store/filtered-todos)]
       (dom/div #js {:className "todo-container"}
         (dom/h1 nil "TODO")
-        (dom/input #js {:id "input" :type "text" :autoFocus true :placeholder "What needs to be done?" :onKeyUp handle-key-up})
+        (dom/input #js {:id "input"
+                        :type "text"
+                        :autoFocus true
+                        :placeholder "What needs to be done?"
+                        :onKeyUp handle-key-up})
         (dom/ul nil (render-todos todos))
         (dom/div #js {:className "controls"}
           (dom/span nil (str "Items left:" (store/items-left)))

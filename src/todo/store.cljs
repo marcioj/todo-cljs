@@ -1,9 +1,20 @@
-(ns todo.store)
+(ns todo.store
+  (:require [clojure.walk :as walk]))
 
-
-(def initial-state {:todos [] :filter-fn identity})
+(def initial-state
+  (->> (.getItem js/localStorage "todo-cljs.todos")
+       (.parse js/JSON)
+       js->clj
+       walk/keywordize-keys
+       (assoc-in {:todos [] :filter-fn identity} [:todos])))
 
 (defonce state (atom initial-state))
+
+;; Save todos on local storage
+(add-watch state :todo-store
+  (fn [_ _ _ new_state]
+    (->> (.stringify js/JSON (clj->js (:todos new_state)))
+         (.setItem js/localStorage "todo-cljs.todos"))))
 
 (defn- next-id
   "Gets the next id based on the last id"
