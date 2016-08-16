@@ -35,6 +35,12 @@
   [text]
   (swap! state update-in [:todos] #(conj % {:text text :id (next-id)})))
 
+(defn clear-completed
+  "Removes the completed todos from the app state"
+  []
+  (->> (:todos @state)
+       (remove :completed)
+       (swap! state assoc :todos)))
 
 (defn- toggle-if-same
   [todo item]

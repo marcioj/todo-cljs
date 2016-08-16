@@ -10,7 +10,6 @@
   Object
   (render [this]
     (let [todo (get (om/props this) :todo)]
-      (println todo)
       (dom/li nil
         (dom/input
           #js {:type "checkbox"
@@ -56,11 +55,13 @@
                         :placeholder "What needs to be done?"
                         :onKeyUp handle-key-up})
         (dom/ul nil (render-todos todos))
-        (dom/div #js {:className "controls"}
-          (dom/span nil (str "Items left:" (store/items-left)))
-          (dom/a #js {:href "#active" :onClick active-items} "Active")
-          (dom/a #js {:href "#completed" :onClick completed-items} "Completed")
-          (dom/a #js {:href "#all" :onClick all-items} "All"))))))
+        (dom/div #js {:className "footer"}
+          (dom/span #js {:className "items-left"} (str "Items left: " (store/items-left)))
+          (dom/span #js {:className "filters"}
+            (dom/a #js {:href "#active" :onClick active-items} "Active")
+            (dom/a #js {:href "#completed" :onClick completed-items} "Completed")
+            (dom/a #js {:href "#all" :onClick all-items} "All"))
+          (dom/a #js {:className "clear-completed" :href "#" :onClick store/clear-completed} "Clear Completed"))))))
 
 
 (def reconciler
