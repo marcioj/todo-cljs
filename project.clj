@@ -44,6 +44,17 @@
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools
                            :preloads [devtools.preload]}}
+
+               {:id "test"
+                :source-paths ["src" "test"]
+                :compiler {:output-to "resources/public/js/test/test.js"
+                           :output-dir "resources/public/js/test/out"
+                           :optimizations :none
+                           :main todo.test-runner
+                           :asset-path "js/test/out"
+                           :source-map true
+                           ;; :source-map-timestamp true
+                           :cache-analysis true}}
                ;; This next build is an compressed minified build for
                ;; production. You can build this with:
                ;; lein cljsbuild once min
@@ -54,6 +65,7 @@
                            :optimizations :advanced
                            :pretty-print false}}]}
 
+  :aliases {"test" ["cljsbuild" "test"]}
   :figwheel {;; :http-server-root "public" ;; default and assumes "resources"
              ;; :server-port 3449 ;; default
              ;; :server-ip "127.0.0.1"

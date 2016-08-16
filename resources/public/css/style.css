@@ -46,6 +46,19 @@ li > a {
   float: right;
 }
 
-.controls a {
-  margin: 5px;
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.footer .filters {
+  width: auto;
+  margin: auto;
+  display: inline-block;
+}
+
+.footer .filters a {
+  margin: 0 5px;
 }
