@@ -1,8 +1,7 @@
 (ns ^:figwheel-always todo.test-runner
   (:require
    [cljs.test :as test :include-macros true :refer [report]]
-   [todo.store-test]
-   [figwheel.client :as fw]))
+   [todo.store-test]))
 
 (enable-console-print!)
 
@@ -31,8 +30,4 @@
   (test/run-tests
    'todo.store-test))
 
-(fw/start {
-           :websocket-url "ws://localhost:3449/figwheel-ws"
-           ;; :autoload false
-           :build-id "test"
-           :on-jsload (fn [] (runner))})
+(runner)

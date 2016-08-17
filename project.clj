@@ -46,6 +46,7 @@
                            :preloads [devtools.preload]}}
 
                {:id "test"
+                :figwheel {:on-jsload "todo.test-runner/runner"}
                 :source-paths ["src" "test"]
                 :compiler {:output-to "resources/public/js/test/test.js"
                            :output-dir "resources/public/js/test/out"
